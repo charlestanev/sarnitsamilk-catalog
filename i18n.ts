@@ -7,7 +7,7 @@ export default getRequestConfig(async ({ locale }) => {
             messages: (await import(`./messages/${locale}.json`)).default
         };
     } catch (error) {
-        // This will show a 404 page if a language file doesn't exist
+        // This will show a 404 page if a language file for a valid locale doesn't exist
         notFound();
     }
 });
