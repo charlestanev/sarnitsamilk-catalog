@@ -1,10 +1,10 @@
-import NextAuth, { type AuthOptions } from "next-auth" // Промяна тук
+import NextAuth, { type AuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import dbConnect from "@/lib/dbConnect"
 import User from "@/models/User"
 import bcrypt from "bcryptjs"
 
-export const authOptions: AuthOptions = { // Промяна тук
+export const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
             name: 'credentials',
@@ -34,6 +34,9 @@ export const authOptions: AuthOptions = { // Промяна тук
             },
         }),
     ],
+    pages: {
+        signIn: '/admin/login',
+    },
     session: {
         strategy: "jwt",
     },
