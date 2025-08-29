@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
 import PublicNavigation from './PublicNavigation';
+import LanguageSwitcher from './LanguageSwitcher'; // Import the new component
 
 export default function Header() {
     return (
@@ -14,7 +15,8 @@ export default function Header() {
 
                 <PublicNavigation />
 
-                <div className="flex items-center justify-end">
+                <div className="flex flex-1 items-center justify-end space-x-2">
+                    <LanguageSwitcher /> {/* Add the language switcher */}
                     <ThemeToggle />
                 </div>
             </div>

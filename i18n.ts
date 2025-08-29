@@ -1,13 +1,14 @@
 import { getRequestConfig } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
+const locales = ['bg', 'en'];
+
 export default getRequestConfig(async ({ locale }) => {
-    try {
-        return {
-            messages: (await import(`./messages/${locale}.json`)).default
-        };
-    } catch (error) {
-        // This will show a 404 page if a language file for a valid locale doesn't exist
+    if (!locales.includes(locale as any)) {
         notFound();
     }
+
+    return {
+        messages: (await import(`./messages/${locale}.json`)).default
+    };
 });

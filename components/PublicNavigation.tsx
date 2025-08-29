@@ -1,12 +1,14 @@
 'use client'
 
-import Link from 'next/link';
+// IMPORTANT: Imports now come from 'next-intl/navigation'
+// import { Link } from 'next-intl/navigation';
+import { usePathname } from 'next/navigation'; // Standard pathname is fine here
 import { useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation'
+import { Link } from '@/i18n/navigation';
 
 export default function PublicNavigation() {
     const t = useTranslations('Navigation');
-    const pathname = usePathname();
+    const pathnameWithLocale = usePathname();
 
     const navLinks = [
         { href: "/", label: t('home') },
@@ -15,6 +17,9 @@ export default function PublicNavigation() {
         { href: "/products", label: t('products') },
         { href: "/contacts", label: t('contacts') },
     ];
+
+    // Remove locale from pathname for comparison, e.g. /bg/about -> /about
+    const pathname = pathnameWithLocale.replace(/^\/(bg|en)/, '') || '/';
 
     return (
         <nav className="hidden md:flex flex-1 items-center justify-center space-x-6 text-sm font-medium">
